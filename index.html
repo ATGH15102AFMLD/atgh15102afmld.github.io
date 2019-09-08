@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Irregular Verb Flashcards</title>
+	<link rel="icon" type="image/ico" href="../favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<script src="/js/verbs.js"></script>
+	<script src="/js/main.js"></script>
+	<script>
+	
+	function tts() {
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'https://tts.api.cloud.yandex.net/speech/v1/tts:synthesize', true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		
+		xhr.onreadystatechange = function() { // Call a function when the state changes.
+    		console.log(this.readyState, this.status)
+    		if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        	// Request finished. Do processing here.
+        		
+    		}
+		}
+		
+		xhr.send("text=Hello&lang=en-US");
+		
+		//var audio = new Audio();
+		//audio.src ='http://translate.google.com/translate_tts?ie=utf-8&tl=en&q=Hello%20World';
+		//audio.play();
+	}
+	
+	</script>
+</head>
+<body onload="LoadPage()">
+	<nav>
+		<div class="theme-switch-wrapper">
+	    	<label style="padding-right:10px;">Dark Mode</label>
+	    	<label class="theme-switch" for="checkbox">
+	        	<input type="checkbox" id="checkbox" onclick="SwitchTheme(this)" />
+	        	<div class="slider round"></div>
+			</label>
+		</div>
+	</nav>
+	
+	<div class="flashcard">
+		<div class="fc-verb" id="Verb">irregular verb</div>
+		<div style="display:flex;padding-bottom:45px;">
+			<label id="Form1" class="fc-form">&nbsp;<br>&nbsp;</label>
+			<label id="Form2" class="fc-form">&nbsp;<br>&nbsp;</label>
+			<label id="Form3" class="fc-form">&nbsp;<br>&nbsp;</label>
+		</div>
+		<!--<label style="color:#ff0;font-size:26pt;position:absolute;top:6px;right:12px">⌫</label>-->
+	</div>
+	
+	<div style="text-align:center;padding-top:8px;">
+		<label id="Index" style="color:var(--btn-color)">card number</label>
+	</div>
+	
+	<div class="btn-group">
+		<button class="button" onclick="ShuffleFlashcard()">Shuffle</button>
+		<button class="button" onclick="NextFlashcard()">Next</button>
+	</div>
+
+</body>
+</html>
